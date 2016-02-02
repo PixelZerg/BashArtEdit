@@ -3,7 +3,7 @@ A ascii art editor, fully compatible with bash's 256 colour system - can export 
 
 Here's what a typical string properly escaped for 256 colour in the terminal would look like:
 ```
-\e[48;5;0m\e[38;5;6mHello \e[38;5;1mE\e[38;5;2mv\e[38;5;3me\e[38;5;4mr\e[38;5;5my\e[38;5;6mo\e[38;5;200mn\e[38;5;226me\e[38;5;231m!
+\e[0m\e[38;5;6mHello \e[38;5;1mE\e[38;5;2mv\e[38;5;3me\e[38;5;4mr\e[38;5;5my\e[38;5;6mo\e[38;5;200mn\e[38;5;226me\e[38;5;231m!
 ```
 
 Output:<br>![output](https://cdn.pbrd.co/images/1g7AgxDr.png)
