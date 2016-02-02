@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace BashArtEdit
 {
@@ -395,7 +396,14 @@ namespace BashArtEdit
             }
             if (e.KeyCode == Keys.V)
             {
-                ParseInput();
+                if (!(input.Text.EndsWith("</pre>") && input.Text.StartsWith("<pre")))
+                {
+                    ParseInput();
+                }
+                else
+                {
+                    ParseXML();
+                }
             }
         }
 
@@ -418,6 +426,33 @@ namespace BashArtEdit
         private void input_Click(object sender, EventArgs e)
         {
             UpdCur();
+        }
+        public void ParseXML()
+        {
+            if (input.Text.StartsWith("<pre") && input.Text.EndsWith("</pre>"))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(input.Text);
+                input.Clear();
+                XmlNodeList spans = doc.GetElementsByTagName("span");
+                progressBar1.Maximum = spans.Count;
+                progressBar1.Value = 0;
+                int no = 0;
+                foreach (XmlNode span in spans)
+                {
+                    input.Text += span.InnerText;
+                    foreach (XmlAttribute attr in span.Attributes)
+                    {
+                        Color c = System.Drawing.ColorTranslator.FromHtml(attr.Value.Substring(attr.Value.IndexOf("#"), 7));
+                        BashColour b = new BashColour(BashColour.ClosestBash(c),no,true);
+                        //Console.WriteLine(c.ToString()+" ==> "+b.ToColor());
+                        cols.Add(b);
+                    }
+                    no+=span.InnerText.Length;
+                    progressBar1.Increment(no);
+                }
+                SetCols();
+            }
         }
     }
 }

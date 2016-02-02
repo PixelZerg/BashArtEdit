@@ -9,6 +9,28 @@ namespace BashArtEdit
 {
     public class BashColour
     {
+        public static int ClosestBash(System.Drawing.Color c)
+        {
+            int code = 0;
+            int nearestcode = 0;
+            double nearestcloseness = int.MaxValue;
+            foreach (col col in list)
+            {
+                double closeness = (Math.Abs(col.R - c.R)) + (Math.Abs(col.B - c.B)) + (Math.Abs(col.G - c.G));
+                if (closeness == 0d)
+                {
+                    return code;
+                }
+                if (closeness < nearestcloseness)
+                {
+                    nearestcloseness = closeness;
+                    nearestcode = code;
+                }
+                code++;
+            }
+            return nearestcode;
+        }
+
         public BashColour()
         {
             if (list.Count <= 0) serialize();
