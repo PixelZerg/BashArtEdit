@@ -11,3 +11,9 @@ Output:<br>![output](https://cdn.pbrd.co/images/1g7AgxDr.png)
 Well guess, what, you can directly copy and paste this code into the program and it will be rendered - no hassle - no alterations needed:<br>![demonstration](https://i.gyazo.com/a0505ed3dc72be1e56c3f2a194c9226c.gif)
 
 You can even import huge strings with large amounts of colouring with absolutely no hassle (this string was made with the program, by the way):<br>![demonstration](https://cdn.pbrd.co/images/1g6MsPlY.gif)
+
+As of build 2, you can now import HTML formatted input (non-256 colours are converted into the nearest 256 colour) E.g:
+```html
+<pre style="font: 4px/2px monospace;"><span style="color: #101010;"></span><span style="color: #101010;">#</span><span style="color: #101010;">#</span><span style="color: #101010;">#</span><span style="color: #101010;">#</span></pre>
+```
+This is the output format that the website "http://picascii.com/" uses so that's handy!
